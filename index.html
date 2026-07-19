@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sistema de control de atenciones médicas de RENGÓ MAD." />
+    <meta name="theme-color" content="#101d35" />
+    <title>RENGÓ MAD · Control Médico</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #f4f7fb; }
+      body { font-family: Arial, sans-serif; }
+      iframe { width: 100%; height: 100%; border: 0; display: block; background: #f4f7fb; }
+      .loading { position: fixed; inset: 0; display: grid; place-items: center; background: #101d35; color: #fff; z-index: 2; transition: opacity .25s ease; }
+      .loading div { text-align: center; }
+      .loading strong, .loading span { display: block; }
+      .loading strong { font-size: 22px; letter-spacing: .5px; }
+      .loading span { margin-top: 8px; color: #9eb0cc; font-size: 12px; }
+      .loading.done { opacity: 0; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div class="loading" id="loading"><div><strong>RENGÓ MAD</strong><span>Cargando control médico…</span></div></div>
+    <iframe
+      id="medical-system"
+      src="https://medicontrol-atenciones.mfernandoamanganoq20.chatgpt.site/"
+      title="Sistema de control médico RENGÓ MAD"
+      allow="clipboard-write"
+    ></iframe>
+    <script>
+      document.getElementById("medical-system").addEventListener("load", function () {
+        document.getElementById("loading").classList.add("done");
+      });
+    </script>
+  </body>
+</html>
