@@ -1,36 +1,97 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sistema de control de atenciones médicas de RENGÓ MAD." />
-    <meta name="theme-color" content="#101d35" />
-    <title>RENGÓ MAD · Control Médico</title>
-    <style>
-      * { box-sizing: border-box; }
-      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #f4f7fb; }
-      body { font-family: Arial, sans-serif; }
-      iframe { width: 100%; height: 100%; border: 0; display: block; background: #f4f7fb; }
-      .loading { position: fixed; inset: 0; display: grid; place-items: center; background: #101d35; color: #fff; z-index: 2; transition: opacity .25s ease; }
-      .loading div { text-align: center; }
-      .loading strong, .loading span { display: block; }
-      .loading strong { font-size: 22px; letter-spacing: .5px; }
-      .loading span { margin-top: 8px; color: #9eb0cc; font-size: 12px; }
-      .loading.done { opacity: 0; pointer-events: none; }
-    </style>
-  </head>
-  <body>
-    <div class="loading" id="loading"><div><strong>RENGÓ MAD</strong><span>Cargando control médico…</span></div></div>
-    <iframe
-      id="medical-system"
-      src="https://medicontrol-atenciones.mfernandoamanganoq20.chatgpt.site/"
-      title="Sistema de control médico RENGÓ MAD"
-      allow="clipboard-write"
-    ></iframe>
-    <script>
-      document.getElementById("medical-system").addEventListener("load", function () {
-        document.getElementById("loading").classList.add("done");
-      });
-    </script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sistema Médico RENGÓ MAD | Caso VELTRIQ</title>
+<meta name="description" content="Demostración pública de solo lectura del Sistema Médico RENGÓ MAD desarrollado por VELTRIQ Ecuador.">
+<meta name="theme-color" content="#071426">
+<style>
+:root{--navy:#071426;--navy2:#0b1d34;--blue:#1677ff;--cyan:#25c2e8;--paper:#f4f7fb;--ink:#10213a;--muted:#617087;--line:#dce4ef;--green:#21c98b;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+header{height:78px;padding:0 clamp(22px,6vw,88px);display:flex;align-items:center;justify-content:space-between;background:rgba(7,20,38,.96);color:#fff;border-bottom:1px solid rgba(255,255,255,.1);position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.1em}
+.mark{width:32px;height:32px;position:relative}.mark:before,.mark:after{content:"";position:absolute;top:1px;width:8px;height:29px;transform-origin:bottom}.mark:before{left:7px;background:#fff;transform:rotate(-31deg)}.mark:after{right:7px;background:var(--blue);transform:rotate(31deg)}
+.brand small{padding:4px 7px;border:1px solid rgba(37,194,232,.45);color:var(--cyan);font-size:7px;letter-spacing:.14em}
+.back{padding:11px 16px;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:750}.back:hover{border-color:var(--cyan);color:var(--cyan)}
+.hero{padding:84px clamp(22px,7vw,108px) 88px;background:linear-gradient(125deg,#071426,#0a1e38);color:#fff;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;opacity:.08;background-image:linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px);background-size:55px 55px}
+.hero-inner{max-width:1180px;margin:auto;position:relative}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid rgba(37,194,232,.35);background:rgba(37,194,232,.08);color:#bcefff;font-size:10px;font-weight:850;letter-spacing:.13em}.badge i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+h1{max-width:840px;margin:25px 0 24px;font-size:clamp(44px,7vw,82px);line-height:.98;letter-spacing:-.055em}h1 em{font-style:normal;color:var(--blue)}
+.lead{max-width:720px;margin:0;color:#b7c7da;font-size:clamp(16px,2vw,20px);line-height:1.7}
+.notice{max-width:1180px;margin:-29px auto 0;padding:18px 22px;display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);box-shadow:0 18px 50px rgba(15,35,65,.12);position:relative;z-index:2}.notice b{display:block;margin-bottom:4px}.notice p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.lock{width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;background:#eaf2ff;color:var(--blue);font-size:19px}
+.demo{padding:84px clamp(20px,6vw,88px)}.section-head{max-width:1180px;margin:0 auto 34px;display:flex;justify-content:space-between;align-items:end;gap:30px}.eyebrow{color:var(--blue);font-size:10px;letter-spacing:.15em;font-weight:850}.section-head h2{margin:10px 0 0;font-size:clamp(32px,4.5vw,54px);letter-spacing:-.04em}.section-head p{max-width:390px;margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+.app-shell{max-width:1180px;margin:auto;display:grid;grid-template-columns:210px 1fr;min-height:600px;background:#f6f8fc;border:1px solid #cbd7e6;box-shadow:0 35px 80px rgba(14,35,66,.17);pointer-events:none;user-select:none}
+.sidebar{padding:26px 18px;background:#101d35;color:#fff}.rengo{display:flex;align-items:center;gap:11px;padding-bottom:23px;border-bottom:1px solid rgba(255,255,255,.1)}.rengo-logo{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#2476ff,#26c5e9);font-weight:900}.rengo strong{display:block;font-size:13px}.rengo small{color:#8296b4;font-size:9px}.menu{margin-top:25px;display:grid;gap:8px}.menu span{padding:12px 13px;border-radius:8px;color:#95a7c1;font-size:11px}.menu span.active{background:#1a3a66;color:#fff}.menu i{width:24px;display:inline-block;color:#5cbcff;font-style:normal}
+.workspace{padding:30px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:center}.topbar small{display:block;color:#7c8da3;font-size:9px;letter-spacing:.1em}.topbar h3{margin:5px 0 0;font-size:27px}.demo-pill{padding:9px 12px;background:#eaf2ff;color:#1261ce;border:1px solid #caddf9;font-size:9px;font-weight:850;letter-spacing:.1em}
+.summary{margin-top:27px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:20px;background:#fff;border:1px solid #dce4ef}.stat small{display:block;min-height:28px;color:#72839a;font-size:9px;line-height:1.4}.stat strong{display:block;margin-top:10px;font-size:28px}.stat b{font-size:9px;color:var(--green)}
+.panels{margin-top:15px;display:grid;grid-template-columns:1.5fr .75fr;gap:15px}.panel{background:#fff;border:1px solid #dce4ef}.panel-head{padding:18px 20px;border-bottom:1px solid #e5ebf2}.panel-head strong{display:block;font-size:13px}.panel-head small{color:#7a8aa0;font-size:9px}
+.fake-table{padding:0 20px}.tr{min-height:54px;display:grid;grid-template-columns:.6fr 1.15fr 1fr .9fr;align-items:center;gap:10px;border-bottom:1px solid #edf1f5;font-size:10px}.tr.head{min-height:39px;color:#8493a6;font-size:8px;font-weight:800;letter-spacing:.05em}.status{justify-self:start;padding:5px 7px;background:#eaf9f4;color:#168a65;border-radius:20px;font-size:8px}.status.blue{background:#eaf2ff;color:#1867d6}.status.gold{background:#fff5df;color:#9d6a00}
+.live{padding:20px}.live-card{padding:17px;margin-bottom:10px;background:#f7f9fc;border-left:3px solid var(--blue)}.live-card small{color:#7b8ca2;font-size:8px}.live-card strong{display:block;margin-top:6px;font-size:12px}.meter{height:5px;margin-top:12px;background:#e7edf5}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.features{padding:20px clamp(22px,7vw,108px) 92px}.features-inner{max-width:1180px;margin:auto}.features h2{font-size:clamp(32px,4vw,50px);letter-spacing:-.04em}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #ced9e6;border-left:1px solid #ced9e6}.feature{min-height:190px;padding:25px;background:#fff;border-right:1px solid #ced9e6;border-bottom:1px solid #ced9e6}.feature span{color:var(--blue);font-size:10px;font-weight:850}.feature h3{margin:28px 0 9px;font-size:18px}.feature p{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+.cta{padding:74px clamp(22px,7vw,108px);background:linear-gradient(125deg,#0c5df0,#1687ff);color:#fff}.cta-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:45px}.cta h2{max-width:680px;margin:0;font-size:clamp(34px,4.5vw,58px);line-height:1.03;letter-spacing:-.045em}.cta p{max-width:530px;margin:20px 0 0;color:#d9e9ff;line-height:1.7}.cta-actions{display:flex;flex-direction:column;gap:10px;min-width:220px}.btn{padding:15px 20px;text-align:center;background:#fff;color:#0b5ddd;font-size:12px;font-weight:850}.btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+footer{padding:28px clamp(22px,7vw,108px);display:flex;justify-content:space-between;gap:20px;background:#061120;color:#7186a0;font-size:10px}
+@media(max-width:900px){.app-shell{grid-template-columns:1fr}.sidebar{display:none}.summary{grid-template-columns:repeat(2,1fr)}.panels{grid-template-columns:1fr}.section-head,.cta-inner{align-items:flex-start;flex-direction:column}.cta-actions{width:100%}}
+@media(max-width:600px){header{height:68px}.brand small{display:none}.back{font-size:0}.back:after{content:"← VELTRIQ";font-size:11px}.hero{padding-top:62px}.notice{margin-left:14px;margin-right:14px}.demo{padding-top:60px}.workspace{padding:17px}.summary{grid-template-columns:1fr 1fr}.stat{padding:15px}.stat strong{font-size:22px}.fake-table .tr{grid-template-columns:.7fr 1.2fr .9fr}.fake-table .tr span:nth-child(3){display:none}.feature-grid{grid-template-columns:1fr}.cta-actions{min-width:0}footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="https://09jrtheo.github.io/veltriq/"><span class="mark"></span><span>VELTRIQ</span><small>ECUADOR</small></a>
+  <a class="back" href="https://09jrtheo.github.io/veltriq/">← Volver a VELTRIQ</a>
+</header>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge"><i></i> DEMOSTRACIÓN PÚBLICA · SOLO LECTURA</div>
+    <h1>Sistema Médico<br><em>RENGÓ MAD.</em></h1>
+    <p class="lead">Una solución desarrollada para centralizar atenciones, coordinar equipos médicos y visualizar la operación con claridad.</p>
+  </div>
+</section>
+<div class="notice"><div class="lock">🔒</div><div><b>Vista ilustrativa protegida</b><p>Esta página no contiene datos reales ni permite registrar, modificar, eliminar o facturar información. El acceso operativo está reservado exclusivamente para personal autorizado.</p></div></div>
+<section class="demo">
+  <div class="section-head"><div><div class="eyebrow">VISTA DEL PRODUCTO</div><h2>Control médico desde<br>un solo lugar.</h2></div><p>Representación visual con información ficticia. Todos los controles que ves a continuación están desactivados.</p></div>
+  <div class="app-shell" aria-label="Representación estática y no interactiva del sistema">
+    <aside class="sidebar">
+      <div class="rengo"><div class="rengo-logo">R</div><div><strong>Control Médico</strong><small>Operaciones RENGÓ</small></div></div>
+      <div class="menu"><span class="active"><i>IN</i>Inicio</span><span><i>AT</i>Atenciones</span><span><i>DE</i>Despacho</span><span><i>PM</i>Personal médico</span><span><i>$</i>Facturación</span><span><i>CA</i>Catálogos</span></div>
+    </aside>
+    <main class="workspace">
+      <div class="topbar"><div><small>RENGÓ · CENTRO DE OPERACIONES</small><h3>Resumen de atenciones</h3></div><div class="demo-pill">DATOS FICTICIOS</div></div>
+      <div class="summary">
+        <div class="stat"><small>ATENCIONES HOY</small><strong>12</strong><b>● EN LÍNEA</b></div>
+        <div class="stat"><small>EN OPERACIÓN</small><strong>4</strong><b>↗ ACTIVAS</b></div>
+        <div class="stat"><small>ATENDIDAS ESTE MES</small><strong>248</strong><b>✓ FINALIZADAS</b></div>
+        <div class="stat"><small>PENDIENTES DE FACTURAR</small><strong>6</strong><b>◷ EN REVISIÓN</b></div>
+      </div>
+      <div class="panels">
+        <div class="panel"><div class="panel-head"><strong>Atenciones recientes</strong><small>Ejemplo demostrativo</small></div><div class="fake-table">
+          <div class="tr head"><span>CÓDIGO</span><span>PACIENTE</span><span>COMPAÑÍA</span><span>ESTADO</span></div>
+          <div class="tr"><span>RM-0248</span><span>Paciente demostrativo</span><span>Particular</span><span class="status">Atendida</span></div>
+          <div class="tr"><span>RM-0247</span><span>Paciente de ejemplo</span><span>Asistencia</span><span class="status blue">En sitio</span></div>
+          <div class="tr"><span>RM-0246</span><span>Registro ficticio</span><span>Convenio</span><span class="status gold">Despachada</span></div>
+        </div></div>
+        <div class="panel"><div class="panel-head"><strong>Operación en vivo</strong><small>Equipos activos</small></div><div class="live">
+          <div class="live-card"><small>EQUIPO MÉDICO 01</small><strong>Atención domiciliaria</strong><div class="meter"><span style="width:78%"></span></div></div>
+          <div class="live-card"><small>EQUIPO MÉDICO 02</small><strong>En desplazamiento</strong><div class="meter"><span style="width:54%"></span></div></div>
+          <div class="live-card"><small>COBERTURA</small><strong>Quito, Ecuador</strong><div class="meter"><span style="width:91%"></span></div></div>
+        </div></div>
+      </div>
+    </main>
+  </div>
+</section>
+<section class="features"><div class="features-inner"><div class="eyebrow">CAPACIDADES</div><h2>Lo que resuelve el sistema.</h2><div class="feature-grid">
+  <article class="feature"><span>01</span><h3>Gestión de atenciones</h3><p>Registro centralizado y seguimiento de cada caso desde la solicitud hasta el cierre.</p></article>
+  <article class="feature"><span>02</span><h3>Despacho médico</h3><p>Coordinación del personal y visibilidad del estado operativo de los equipos.</p></article>
+  <article class="feature"><span>03</span><h3>Personal médico</h3><p>Organización de profesionales, especialidades y disponibilidad para atención.</p></article>
+  <article class="feature"><span>04</span><h3>Facturación</h3><p>Control del proceso administrativo y seguimiento de registros pendientes.</p></article>
+  <article class="feature"><span>05</span><h3>Indicadores</h3><p>Resumen de actividad, estados y desempeño para tomar decisiones con claridad.</p></article>
+  <article class="feature"><span>06</span><h3>Software a medida</h3><p>Flujos diseñados alrededor de la operación real de la empresa y preparados para evolucionar.</p></article>
+</div></div></section>
+<section class="cta"><div class="cta-inner"><div><h2>¿Tu empresa necesita un sistema como este?</h2><p>VELTRIQ desarrolla plataformas a medida para digitalizar procesos, reducir errores y tener control real de la operación.</p></div><div class="cta-actions"><a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0D0X6slJ2CUvGaTx4lsOavipL3woh815bnKK2-Z4ZAWI_ol4AWdwMNzflI1W-Vqa4fV6nF_fFI" target="_blank" rel="noreferrer">Agendar una reunión ↗</a><a class="btn secondary" href="https://09jrtheo.github.io/veltriq/">Conocer VELTRIQ</a></div></div></section>
+<footer><span>© 2026 VELTRIQ Ecuador · Caso Sistema Médico RENGÓ MAD</span><span>Demostración pública sin acceso operativo</span></footer>
+</body>
 </html>
